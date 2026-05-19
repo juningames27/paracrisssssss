@@ -266,12 +266,11 @@ function completeQuiz() {
   })();
 }
 
-async function chooseSurprise(idx) {
+function chooseSurprise(idx) {
   if (alreadyChose) return;
 
   alreadyChose = true;
 
-  const choice = surprises[idx];
   const giftButtons = document.querySelectorAll(".gift-box");
   const resultBox = document.getElementById("saveResult");
 
@@ -281,60 +280,20 @@ async function chooseSurprise(idx) {
   });
 
   resultBox.className = "save-result show";
-  resultBox.textContent = "Salvando sua escolha no banco de dados... 💾💕";
+  resultBox.textContent = "Escolha feita com sucesso! 💖";
 
-  try {
-    const response = await fetch("/api/escolhas", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        escolha: choice.title,
-        indice: idx
-      })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "Erro ao salvar escolha.");
-    }
-
-    resultBox.innerHTML = `
-      Escolha salva com sucesso! 💖<br>
-      ID: <strong>${data.id}</strong><br>
-      Escolha: <strong>${data.escolha}</strong>
-    `;
-
-    openSurprise(idx, data.id);
-  } catch (error) {
-    alreadyChose = false;
-    giftButtons.forEach((button) => {
-      button.disabled = false;
-      button.classList.remove("selected");
-    });
-
-    resultBox.className = "save-result show";
-    resultBox.textContent = "Não consegui salvar no banco. Confira se o servidor Node está rodando.";
-    console.error(error);
-  }
+  openSurprise(idx);
 }
 
-function openSurprise(idx, savedChoiceId) {
+function openSurprise(idx) {
   const choice = surprises[idx];
 
   document.getElementById("modalEmoji").textContent = choice.emoji;
   document.getElementById("modalContent").textContent = choice.message;
 
   const savedId = document.getElementById("savedId");
-  if (savedChoiceId) {
-    savedId.textContent = `ID salvo no banco: ${savedChoiceId}`;
-    savedId.classList.add("show");
-  } else {
-    savedId.textContent = "";
-    savedId.classList.remove("show");
-  }
+  savedId.textContent = "";
+  savedId.classList.remove("show");
 
   document.getElementById("modalOverlay").style.display = "flex";
   confetti({ particleCount: 35, spread: 45 });
