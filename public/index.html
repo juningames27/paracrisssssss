@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para o Meu Amorzinho 🍓💖</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <audio id="loveAudio" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+  <button class="music-player" onclick="togglePlay()" id="musicBtn">
+    <span>🎵</span>
+    <span id="musicTxt">Ligar Musiquinha</span>
+  </button>
+
+  <div class="floating-decorations" id="decorations"></div>
+
+  <main class="container" id="quizCard">
+    <div id="quizScreen">
+      <div class="progress-wrapper">
+        <div class="progress-track">
+          <div class="progress-fill" id="fillBar"></div>
+        </div>
+        <div class="progress-heart" id="movingHeart">❤️</div>
+      </div>
+
+      <div class="emoji-character" id="displayEmoji">🌸</div>
+      <h1 id="displayTitle">Carregando...</h1>
+      <p class="subtitle" id="displaySub">Aguarde...</p>
+
+      <div id="interactiveArea"></div>
+      <div class="error-balloon" id="errorMsg"></div>
+    </div>
+
+    <div id="victoryScreen" style="display: none;">
+      <div class="emoji-character victory-emoji">✨🧸✨</div>
+      <h1>Você passou no Teste do Amor! 💕</h1>
+      <p class="subtitle victory-subtitle">
+        Você me conhece perfeitamente bem, neném! Agora escolha apenas uma das 3 surpresas.
+        Depois de escolher, ela será salva no banco de dados.
+      </p>
+
+      <div class="gift-grid" id="giftGrid">
+        <button class="gift-box" onclick="chooseSurprise(0)">
+          <div class="gift-icon">💌</div>
+          <div class="gift-title">Cartinha Secreta</div>
+        </button>
+
+        <button class="gift-box" onclick="chooseSurprise(1)">
+          <div class="gift-icon">🎟️</div>
+          <div class="gift-title">Vale-Presente</div>
+        </button>
+
+        <button class="gift-box" onclick="chooseSurprise(2)">
+          <div class="gift-icon">☁️</div>
+          <div class="gift-title">Nosso Destino</div>
+        </button>
+      </div>
+
+      <div class="save-result" id="saveResult"></div>
+    </div>
+  </main>
+
+  <div class="overlay" id="modalOverlay" onclick="closeSurprise()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div id="modalEmoji" class="modal-emoji">🧸</div>
+      <p class="modal-msg" id="modalContent">Mensagem aqui...</p>
+      <p class="saved-id" id="savedId"></p>
+      <button class="btn-submit close-btn" onclick="closeSurprise()">Fechar Mimo</button>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

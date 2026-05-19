@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS escolhas (
+  id TEXT PRIMARY KEY,
+  escolha TEXT NOT NULL,
+  indice INTEGER NOT NULL,
+  criado_em TEXT NOT NULL
+);
