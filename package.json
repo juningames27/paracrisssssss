@@ -5,5 +5,7 @@
   "scripts": {
     "start": "echo ok"
   },
-  "dependencies": {}
+  "dependencies": {
+    "pg": "^8.21.0"
+  }
 }
