@@ -1,14 +1,9 @@
 {
-  "name": "quiz-namorada-com-banco",
+  "name": "quiz-namorada",
   "version": "1.0.0",
-  "description": "Site fofo de questionário com escolha final salva em SQLite.",
-  "main": "server.js",
+  "description": "Site fofo para namorada",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "echo ok"
   },
-  "dependencies": {
-    "express": "^4.19.2",
-    "sqlite3": "^5.1.7"
-  }
+  "dependencies": {}
 }
